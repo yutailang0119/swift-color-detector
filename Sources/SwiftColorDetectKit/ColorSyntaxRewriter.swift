@@ -56,8 +56,9 @@ private class ColorLiteralSyntaxRewriter: SyntaxRewriter {
     override func visit(_ token: TokenSyntax) -> Syntax {
         switch token.tokenKind {
         case .rightParen:
-            let comment = TriviaPiece.docLineComment(" /* \(color.hex) */")
-            return token.withTrailingTrivia(Trivia(arrayLiteral:comment))
+            let colorComment = TriviaPiece.docLineComment(" /* \(color.hex) */ ")
+            let trailingTrivia = token.trailingTrivia.appending(colorComment)
+            return token.withTrailingTrivia(trailingTrivia)
         default:
             return token
         }
