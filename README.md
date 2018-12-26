@@ -22,7 +22,7 @@ let color2 = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
 let dictionary = ["foo": 1,
                   "bar": 2,
                   "baz": 3]
-let color3 = UIColor.init(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+let color3 = UIColor.init(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) // comment
 ```
 
 ```bash
@@ -35,13 +35,13 @@ to output
 import UIKit
 
 let string = "ABCDE"
-let color1 = UIColor(red: 0.55, green: 0.0, blue: 0.0, alpha: 1.0) /* #8C0000 */
+let color1 = UIColor(red: 0.55, green: 0.0, blue: 0.0, alpha: 1.0) /* #8C0000 */ 
 let array = [1, 2, 3, 4, 5]
-let color2 = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) /* #00FF00 */
+let color2 = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0) /* #00FF00 */ 
 let dictionary = ["foo": 1,
                   "bar": 2,
                   "baz": 3]
-let color3 = UIColor.init(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0) /* #0000FF */
+let color3 = UIColor.init(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)  /* #0000FF */ // commentLine
 ```
 
 ### rewrite
