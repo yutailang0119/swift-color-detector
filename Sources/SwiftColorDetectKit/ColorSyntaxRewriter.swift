@@ -11,11 +11,18 @@ import SwiftSyntax
 internal class ColorSyntaxRewriter: SyntaxRewriter {
 
     override func visit(_ node: FunctionCallExprSyntax) -> ExprSyntax {
-        guard node.calledExpression.description == "UIColor"
-            || node.calledExpression.description == "UIColor.init" else {
-                return node
+        guard isUIColorInitializer(of: node) else {
+            return node
         }
+
         return rewriteColorFunctionCallExprSyntax(node)
+    }
+
+    private func isUIColorInitializer(of node: FunctionCallExprSyntax) -> Bool {
+        return
+            (node.calledExpression.description == "UIColor" && node.leftParen != nil) // UIColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
+            ||
+            node.calledExpression.description == "UIColor.init" // UIColor.init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
     }
 
     private func rewriteColorFunctionCallExprSyntax(_ node: FunctionCallExprSyntax) -> ExprSyntax {
@@ -41,7 +48,7 @@ internal class ColorSyntaxRewriter: SyntaxRewriter {
             return node
 
         }
-        return node.withArgumentList(color.rewriteInitilizerArgumentListSyntax())
+        return node.withArgumentList(color.rewriteInitializerArgumentListSyntax())
     }
 
 }
