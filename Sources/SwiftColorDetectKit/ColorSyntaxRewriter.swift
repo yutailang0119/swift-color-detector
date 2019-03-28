@@ -33,13 +33,13 @@ internal class ColorSyntaxRewriter: SyntaxRewriter {
             }
             switch label.text {
             case "red":
-                red = CGFloat(argumentSyntax.expression.description)
+                red = CGFloat(expression: argumentSyntax.expression)
             case "green":
-                green = CGFloat(argumentSyntax.expression.description)
+                green = CGFloat(expression: argumentSyntax.expression)
             case "blue":
-                blue = CGFloat(argumentSyntax.expression.description)
+                blue = CGFloat(expression: argumentSyntax.expression)
             case "alpha":
-                alpha = CGFloat(argumentSyntax.expression.description)
+                alpha = CGFloat(expression: argumentSyntax.expression)
             default:
                 break
             }
