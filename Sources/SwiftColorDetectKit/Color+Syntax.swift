@@ -10,13 +10,14 @@ import SwiftSyntax
 
 extension Color {
     func rewriteInitializerArgumentListSyntax() -> FunctionCallArgumentListSyntax {
-        let colon = SyntaxFactory.makeIdentifier(": ")
+        let space = Trivia.init(arrayLiteral: TriviaPiece.spaces(1))
+        let colon = SyntaxFactory.makeIdentifier(":").withTrailingTrivia(space)
 
         let hexArgument = FunctionCallArgumentSyntax { builder in
             let label = SyntaxFactory.makeIdentifier("hex")
             let value = SyntaxFactory.makeStringLiteral("\"\(hex)\"")
             let expression = SyntaxFactory.makeStringLiteralExpr(stringLiteral: value)
-            let trailingComma = SyntaxFactory.makeIdentifier(", ")
+            let trailingComma = SyntaxFactory.makeIdentifier(",").withTrailingTrivia(space)
             builder.useLabel(label)
             builder.useColon(colon)
             builder.useExpression(expression)
