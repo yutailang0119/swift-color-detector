@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct RGBColor: Color {
+struct RGBColor: Color {
     let red: CGFloat
     let green: CGFloat
     let blue: CGFloat
