@@ -22,7 +22,7 @@ public struct Target {
 
     public func detect() throws -> String {
         let sourceFile = try SyntaxTreeParser.parse(path)
-        let syntax = ColorSyntaxRewriter().visit(sourceFile)
+        let syntax = RGBColorSyntaxRewriter().visit(sourceFile)
         return syntax.description
     }
 

@@ -1,5 +1,5 @@
 //
-//  ColorSyntaxRewriter.swift
+//  RGBColorSyntaxRewriter.swift
 //  SwiftColorDetectKit
 //
 //  Created by Yutaro Muta on 2018/12/24.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftSyntax
 
-internal class ColorSyntaxRewriter: SyntaxRewriter {
+internal class RGBColorSyntaxRewriter: SyntaxRewriter {
 
     override func visit(_ node: FunctionCallExprSyntax) -> ExprSyntax {
         guard isUIColorInitializer(of: node) else {
@@ -44,11 +44,11 @@ internal class ColorSyntaxRewriter: SyntaxRewriter {
                 break
             }
         }
-        guard let color = Color(red: red, green: green, blue: blue, alpha: alpha) else {
+        guard let rgbcolor = RGBColor(red: red, green: green, blue: blue, alpha: alpha) else {
             return node
 
         }
-        return node.withArgumentList(color.rewriteInitializerArgumentListSyntax())
+        return node.withArgumentList(rgbcolor.rewriteInitializerArgumentListSyntax())
     }
 
 }

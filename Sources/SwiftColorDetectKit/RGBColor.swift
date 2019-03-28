@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  RGBColor.swift
 //  SwiftColorDetectKit
 //
 //  Created by Yutaro Muta on 2018/12/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct Color {
+internal struct RGBColor {
     let red: CGFloat
     let green: CGFloat
     let blue: CGFloat
