@@ -1,14 +1,32 @@
 //
-//  RGBColor+Syntax.swift
+//  Color.swift
 //  SwiftColorDetectKit
 //
-//  Created by Yutaro Muta on 2019/03/23.
+//  Created by Yutaro Muta on 2019/03/28.
 //
 
 import Foundation
 import SwiftSyntax
 
-extension RGBColor {
+protocol Color {
+    var red: CGFloat { get }
+    var green: CGFloat { get }
+    var blue: CGFloat { get }
+    var alpha: CGFloat { get }
+}
+
+extension Color {
+    var hex: String {
+        let rgb = Int(red * 255) << 16 | Int(green * 255) << 8 | Int(blue * 255) << 0
+        return String(format: "#%06x", rgb).uppercased()
+    }
+
+    var colorLiteral: String {
+        return "#colorLiteral(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha)"
+    }
+}
+
+extension Color {
     func rewriteInitializerArgumentListSyntax() -> FunctionCallArgumentListSyntax {
         let space = Trivia.init(arrayLiteral: TriviaPiece.spaces(1))
         let colon = SyntaxFactory.makeIdentifier(":").withTrailingTrivia(space)

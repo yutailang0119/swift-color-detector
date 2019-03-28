@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct RGBColor {
+internal struct RGBColor: Color {
     let red: CGFloat
     let green: CGFloat
     let blue: CGFloat
@@ -24,15 +24,6 @@ internal struct RGBColor {
         self.green = green
         self.blue = blue
         self.alpha = alpha
-    }
-
-    var hex: String {
-        let rgb = Int(red * 255) << 16 | Int(green * 255) << 8 | Int(blue * 255) << 0
-        return String(format: "#%06x", rgb).uppercased()
-    }
-
-    var colorLiteral: String {
-        return "#colorLiteral(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha)"
     }
 
 }
