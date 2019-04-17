@@ -20,15 +20,17 @@ public struct Target {
         self.path = URL(fileURLWithPath: path)
     }
 
-    public func detect() throws -> String {
+    public func detect() throws {
         let sourceFile = try SyntaxTreeParser.parse(path)
-        let syntax = RGBColorSyntaxRewriter().visit(sourceFile)
-        return syntax.description
+        let visitor = RGBColorSyntaxVisitor(filePath: path)
+        visitor.visit(sourceFile)
     }
 
     public func rewrite() throws {
-        let detected = try detect()
-        try detected.write(to: path, atomically: true, encoding: .utf8)
+        let sourceFile = try SyntaxTreeParser.parse(path)
+        let rewriter = RGBColorSyntaxRewriter()
+        let syntax = rewriter.visit(sourceFile)
+        try syntax.description.write(to: path, atomically: true, encoding: .utf8)
     }
 
 }
