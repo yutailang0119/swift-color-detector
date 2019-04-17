@@ -8,9 +8,9 @@
 import Foundation
 import SwiftSyntax
 
-internal class RGBColorSyntaxVisitor: SyntaxVisitor, RGBColorDetectable {
+internal class RGBColorSyntaxVisitor: SyntaxVisitor, RGBColorDetectable, SyntaxNodeDumpable {
 
-    private let filePath: URL
+    let filePath: URL
 
     init(filePath: URL) {
         self.filePath = filePath
@@ -21,9 +21,9 @@ internal class RGBColorSyntaxVisitor: SyntaxVisitor, RGBColorDetectable {
             return
         }
 
-        let colorInitializer = node.withArgumentList(rgbColor.hexInitializerArgumentListSyntax)
-        let path = filePath.isFileURL ? filePath.path : filePath.absoluteString
-        print("[\(path), \(node.position.line), \(node.position.column)] \(node.description) -> \(colorInitializer)")
+        let colorInitializerSyntax = node.withArgumentList(rgbColor.hexInitializerArgumentListSyntax)
+        let dumpPrefix = dumpInfo(of: node)
+        print("\(dumpPrefix) \(node.description) -> \(colorInitializerSyntax)")
     }
 
 }

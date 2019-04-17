@@ -28,7 +28,7 @@ public struct Target {
 
     public func rewrite() throws {
         let sourceFile = try SyntaxTreeParser.parse(path)
-        let rewriter = RGBColorSyntaxRewriter()
+        let rewriter = RGBColorSyntaxRewriter(filePath: path)
         let syntax = rewriter.visit(sourceFile)
         try syntax.description.write(to: path, atomically: true, encoding: .utf8)
     }
