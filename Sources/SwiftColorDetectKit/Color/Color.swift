@@ -27,7 +27,7 @@ extension Color {
 }
 
 extension Color {
-    func rewriteInitializerArgumentListSyntax() -> FunctionCallArgumentListSyntax {
+    var hexInitializerArgumentListSyntax: FunctionCallArgumentListSyntax {
         let space = Trivia.init(arrayLiteral: TriviaPiece.spaces(1))
         let colon = SyntaxFactory.makeIdentifier(":").withTrailingTrivia(space)
 

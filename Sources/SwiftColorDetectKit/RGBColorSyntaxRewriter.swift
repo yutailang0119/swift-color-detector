@@ -48,7 +48,7 @@ internal class RGBColorSyntaxRewriter: SyntaxRewriter {
             return node
 
         }
-        return node.withArgumentList(rgbcolor.rewriteInitializerArgumentListSyntax())
+        return node.withArgumentList(rgbcolor.hexInitializerArgumentListSyntax)
     }
 
 }
