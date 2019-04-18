@@ -2,7 +2,7 @@
 //  SubCommand.swift
 //  FileScanKit
 //
-//  Created by Yutaro Muta on 2019/04/18.
+//  Created by Yutaro Muta onSubCommand4/18.
 //
 
 import Foundation
