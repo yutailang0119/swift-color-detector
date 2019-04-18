@@ -10,11 +10,14 @@ let package = Package(
         .library(name: "SwiftColorDetectKit", targets: ["SwiftColorDetectKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-syntax.git", from: "0.50000.0")
+        .package(url: "https://github.com/apple/swift-syntax.git", from: Version(0, 50000, 0)),
+        .package(url: "https://github.com/yutailang0119/FileScanKit.git", from: Version(0, 1, 0)),
     ],
     targets: [
-        .target(name: "swift-color-detector", dependencies: ["SwiftColorDetectKit"]),
-        .target(name: "SwiftColorDetectKit", dependencies: ["SwiftSyntax"]),
+        .target(name: "swift-color-detector",
+                dependencies: ["SwiftColorDetectKit", "FileScanKit",]),
+        .target(name: "SwiftColorDetectKit",
+                dependencies: ["SwiftSyntax", "FileScanKit",]),
         .testTarget(name: "SwiftColorDetectKitTests", dependencies: ["SwiftColorDetectKit"]),
     ]
 )
