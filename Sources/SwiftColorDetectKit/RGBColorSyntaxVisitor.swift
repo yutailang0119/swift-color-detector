@@ -16,14 +16,16 @@ internal class RGBColorSyntaxVisitor: SyntaxVisitor, RGBColorDetectable, SyntaxN
         self.filePath = filePath
     }
 
-    override func visit(_ node: FunctionCallExprSyntax) {
+    override func visit(_ node: FunctionCallExprSyntax) -> SyntaxVisitorContinueKind {
         guard let rgbColor = detectRGBColor(from: node) else {
-            return
+            return .visitChildren
         }
 
         let colorInitializerSyntax = node.withArgumentList(rgbColor.hexInitializerArgumentListSyntax)
         let dumpPrefix = dumpInfo(of: node)
         print("\(dumpPrefix) \(node.description) -> \(colorInitializerSyntax)")
+
+        return .visitChildren
     }
 
 }
