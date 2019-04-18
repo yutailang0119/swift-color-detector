@@ -10,7 +10,7 @@ let package = Package(
         .library(name: "SwiftColorDetectKit", targets: ["SwiftColorDetectKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-syntax.git", from: "0.40200.0")
+        .package(url: "https://github.com/apple/swift-syntax.git", from: "0.50000.0")
     ],
     targets: [
         .target(name: "swift-color-detector", dependencies: ["SwiftColorDetectKit"]),
