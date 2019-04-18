@@ -20,8 +20,7 @@ case "dump":
         fatalError("Error: Indeclear file path")
     }
     let target = Target(path: path)
-    let result = try target.detect()
-    print(result)
+    try target.detect()
 case "rewrite":
     guard let path = path else {
         fatalError("Error: Indeclear file path")
