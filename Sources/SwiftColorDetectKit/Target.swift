@@ -11,26 +11,27 @@ import SwiftSyntax
 public struct Target {
 
     private let fileManager = FileManager.default
-    private let path: URL
+    private let filePaths: [URL]
 
-    public init(path: String) {
-        guard fileManager.fileExists(atPath: path) else {
-            fatalError("Error: File does not exist")
-        }
-        self.path = URL(fileURLWithPath: path)
+    public init(filePaths: [URL]) {
+        self.filePaths = filePaths
     }
 
     public func detect() throws {
-        let sourceFile = try SyntaxTreeParser.parse(path)
-        let visitor = RGBColorSyntaxVisitor(filePath: path)
-        sourceFile.walk(visitor)
+        try filePaths.forEach { path in
+            let sourceFile = try SyntaxTreeParser.parse(path)
+            let visitor = RGBColorSyntaxVisitor(filePath: path)
+            sourceFile.walk(visitor)
+        }
     }
 
     public func rewrite() throws {
-        let sourceFile = try SyntaxTreeParser.parse(path)
-        let rewriter = RGBColorSyntaxRewriter(filePath: path)
-        let syntax = rewriter.visit(sourceFile)
-        try syntax.description.write(to: path, atomically: true, encoding: .utf8)
+        try filePaths.forEach { path in
+            let sourceFile = try SyntaxTreeParser.parse(path)
+            let rewriter = RGBColorSyntaxRewriter(filePath: path)
+            let syntax = rewriter.visit(sourceFile)
+            try syntax.description.write(to: path, atomically: true, encoding: .utf8)
+        }
     }
 
 }
