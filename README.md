@@ -6,7 +6,7 @@ CLI to detect and rewrite Swift UIColor
 
 swift-color-detector is still in active development.   
 
-## Usege
+## Usage
 
 ### dump
 
